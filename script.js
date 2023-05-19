@@ -19,7 +19,7 @@ const ashiq = new Person("Ashiq", 1992);
 // 4. Function automatically return Object
 
 const tanvir = new Person("Tanvir", 1999);
-console.log(tanvir);
+// console.log(tanvir);
 
 // SECTION: PROTOTYPES ==============================  =============================
 Person.prototype.calcAge = function () {
@@ -30,11 +30,28 @@ tanvir.calcAge();
 ashiq.calcAge();
 
 // NOTE:  In there Person.prototype is not the prototype of Person it is the prototype of all the objects created by Person constructor
-console.log(Person.prototype === ashiq.__proto__);
-console.log(Person.prototype.isPrototypeOf(tanvir));
+// console.log(Person.prototype === ashiq.__proto__);
+// console.log(Person.prototype.isPrototypeOf(tanvir));
 
 Person.prototype.city = "Dhaka";
 
-console.log(ashiq.city, tanvir.city);
+// console.log(ashiq.city, tanvir.city);
 
-console.log(ashiq.hasOwnProperty("city"));
+// console.log(ashiq.hasOwnProperty("city"));
+
+// SECTION: PROTOTYPAL INHERITANCE on BUILT-IN OBJECTS ===========================================================
+console.log(ashiq.__proto__.__proto__);
+
+console.dir(Person.prototype.constructor);
+
+const arr = [3, 6, 4, 6, 6, 9];
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+
+console.log(arr.unique());
+
+console.log(document.querySelector("h1"));
