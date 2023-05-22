@@ -171,3 +171,16 @@ PersonStatic.greet = function () {
 
 const personGreet = new PersonStatic("Kuddus Ali");
 PersonStatic.greet();
+
+// SECTION: Object.create ================================================
+const PersonProto = {
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  },
+};
+
+const moqbul = Object.create(PersonProto);
+moqbul.birthYear = 2000;
+moqbul.calcAge();
+
+console.log(moqbul.__proto__ === PersonProto);
