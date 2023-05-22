@@ -1,18 +1,18 @@
 "use strict";
 
 // SECTION: ==================== Constructor functions & the new Operator ========================
-const Person = function (firstName, birthYear) {
-  // NOTE: Instance Properties
-  this.firstName = firstName;
-  this.birthYear = birthYear;
+// const Person = function (firstName, birthYear) {
+//   // NOTE: Instance Properties
+//   this.firstName = firstName;
+//   this.birthYear = birthYear;
 
-  // NOTE: NEVER Create Methods inside Constructor Functions. Instead create it in prototype
-  //   this.calcAge = function () {
-  //     console.log(2023 - this.birthYear);
-  //   };
-};
+//   // NOTE: NEVER Create Methods inside Constructor Functions. Instead create it in prototype
+//   //   this.calcAge = function () {
+//   //     console.log(2023 - this.birthYear);
+//   //   };
+// };
 
-const ashiq = new Person("Ashiq", 1992);
+// const ashiq = new Person("Ashiq", 1992);
 
 // NOTE:
 // 1. Create new {} Object
@@ -20,13 +20,13 @@ const ashiq = new Person("Ashiq", 1992);
 // 3. {} is linked to prototype
 // 4. Function automatically return Object
 
-const tanvir = new Person("Tanvir", 1999);
+// const tanvir = new Person("Tanvir", 1999);
 // console.log(tanvir);
 
 // SECTION: PROTOTYPES ===========================================================
-Person.prototype.calcAge = function () {
-  console.log(2023 - this.birthYear);
-};
+// Person.prototype.calcAge = function () {
+//   console.log(2023 - this.birthYear);
+// };
 
 // tanvir.calcAge();
 // ashiq.calcAge();
@@ -35,7 +35,7 @@ Person.prototype.calcAge = function () {
 // console.log(Person.prototype === ashiq.__proto__);
 // console.log(Person.prototype.isPrototypeOf(tanvir));
 
-Person.prototype.city = "Dhaka";
+// Person.prototype.city = "Dhaka";
 
 // console.log(ashiq.city, tanvir.city);
 
@@ -119,9 +119,9 @@ const account = {
   },
 };
 
-console.log(account.latest);
+// console.log(account.latest);
 
-account.latest = 250;
+// account.latest = 250;
 
 // Class
 class PersonCl {
@@ -155,7 +155,7 @@ class PersonCl {
 }
 
 const kuddus = new PersonCl("Kuddus Ali", 1990);
-console.log(kuddus.age);
+// console.log(kuddus.age);
 
 // SECTION: Static Methods================================================
 
@@ -180,10 +180,10 @@ const PersonProto = {
 };
 
 const moqbul = Object.create(PersonProto);
-moqbul.birthYear = 2000;
-moqbul.calcAge();
+// moqbul.birthYear = 2000;
+// moqbul.calcAge();
 
-console.log(moqbul.__proto__ === PersonProto);
+// console.log(moqbul.__proto__ === PersonProto);
 
 // SECTION: Challenge #2 =============================================
 
@@ -213,11 +213,40 @@ class Car {
 }
 
 const ford = new Car("Ford", 120);
-console.log(ford.speedUs);
-ford.accelerate();
-ford.accelerate();
-ford.brake();
+// console.log(ford.speedUs);
+// ford.accelerate();
+// ford.accelerate();
+// ford.brake();
 
-ford.speedUs = 50;
-ford.accelerate();
-ford.brake();
+// ford.speedUs = 50;
+// ford.accelerate();
+// ford.brake();
+
+// SECTION: INHERITANCE BETWEEN CLASSES CONSTRUCTOR FUNCTIONS====================================
+
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function () {
+  console.log(2023 - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+// NOTE: LINKING PROTOTYPES
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I am study at ${this.course}`);
+};
+
+const ashiq = new Student("Ashiq", 1992, "Computer Science");
+ashiq.introduce();
+ashiq.calcAge();
+
+console.log(ashiq);
