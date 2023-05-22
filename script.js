@@ -1,3 +1,5 @@
+"use strict";
+
 // SECTION: ==================== Constructor functions & the new Operator ========================
 const Person = function (firstName, birthYear) {
   // NOTE: Instance Properties
@@ -133,6 +135,10 @@ class PersonCl {
     console.log(2023 - this.birthYear);
   }
 
+  static hey() {
+    console.log("Hey there👋");
+  }
+
   get age() {
     return 2023 - this.birthYear;
   }
@@ -150,3 +156,18 @@ class PersonCl {
 
 const kuddus = new PersonCl("Kuddus Ali", 1990);
 console.log(kuddus.age);
+
+// SECTION: Static Methods================================================
+
+const PersonStatic = class {
+  constructor(fullName) {
+    this.fullName = fullName;
+  }
+};
+
+PersonStatic.greet = function () {
+  console.log("first");
+};
+
+const personGreet = new PersonStatic("Kuddus Ali");
+PersonStatic.greet();
