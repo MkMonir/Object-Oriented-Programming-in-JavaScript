@@ -21,13 +21,13 @@ const ashiq = new Person("Ashiq", 1992);
 const tanvir = new Person("Tanvir", 1999);
 // console.log(tanvir);
 
-// SECTION: PROTOTYPES ==============================  =============================
+// SECTION: PROTOTYPES ===========================================================
 Person.prototype.calcAge = function () {
   console.log(2023 - this.birthYear);
 };
 
-tanvir.calcAge();
-ashiq.calcAge();
+// tanvir.calcAge();
+// ashiq.calcAge();
 
 // NOTE:  In there Person.prototype is not the prototype of Person it is the prototype of all the objects created by Person constructor
 // console.log(Person.prototype === ashiq.__proto__);
@@ -40,18 +40,41 @@ Person.prototype.city = "Dhaka";
 // console.log(ashiq.hasOwnProperty("city"));
 
 // SECTION: PROTOTYPAL INHERITANCE on BUILT-IN OBJECTS ===========================================================
-console.log(ashiq.__proto__.__proto__);
+// console.log(ashiq.__proto__.__proto__);
 
-console.dir(Person.prototype.constructor);
+// console.dir(Person.prototype.constructor);
 
-const arr = [3, 6, 4, 6, 6, 9];
-console.log(arr.__proto__);
-console.log(arr.__proto__ === Array.prototype);
+// const arr = [3, 6, 4, 6, 6, 9];
+// console.log(arr.__proto__);
+// console.log(arr.__proto__ === Array.prototype);
 
-Array.prototype.unique = function () {
-  return [...new Set(this)];
+// Array.prototype.unique = function () {
+//   return [...new Set(this)];
+// };
+
+// console.log(arr.unique());
+
+// console.log(document.querySelector("h1"));
+
+// SECTION: CODING CHALLENGE #1 =================================================================
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
 };
 
-console.log(arr.unique());
+Car.prototype.accelerate = function () {
+  this.speed += 10;
 
-console.log(document.querySelector("h1"));
+  console.log(`${this.make} is going at ${this.speed} km/h`);
+};
+
+Car.prototype.brake = function () {
+  this.speed -= 5;
+  console.log(`${this.make} is going at ${this.speed} km/h`);
+};
+
+const bmw = new Car("BMW", 120);
+const mercedes = new Car("Mercedes", 95);
+
+bmw.accelerate();
+mercedes.brake();
