@@ -101,3 +101,52 @@ mercedes.brake();
 
 // const kuddus = new PersonCl("Kuddus", 1990);
 // kuddus.calcAge();
+
+// SECTION: Setters & getters =================================================
+// Regular Object
+const account = {
+  owner: "Abdul Ali",
+  movements: [200, 150, 350, 300],
+
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+
+  set latest(value) {
+    this.movements.push(value);
+  },
+};
+
+console.log(account.latest);
+
+account.latest = 250;
+
+// Class
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  // Methods will be added to .prototype property automatically
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  }
+
+  get age() {
+    return 2023 - this.birthYear;
+  }
+
+  // Set a property that already exists
+  set fullName(name) {
+    if (name.includes(" ")) this._fullName = name;
+    else alert(`${name} is not a valid full name!`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+}
+
+const kuddus = new PersonCl("Kuddus Ali", 1990);
+console.log(kuddus.age);
