@@ -4,7 +4,7 @@ const Person = function (firstName, birthYear) {
   this.firstName = firstName;
   this.birthYear = birthYear;
 
-  // NOTE: NEVER DO THIS
+  // NOTE: NEVER Create Methods inside Constructor Functions. Instead create it in prototype
   //   this.calcAge = function () {
   //     console.log(2023 - this.birthYear);
   //   };
@@ -64,7 +64,6 @@ const Car = function (make, speed) {
 
 Car.prototype.accelerate = function () {
   this.speed += 10;
-
   console.log(`${this.make} is going at ${this.speed} km/h`);
 };
 
@@ -78,3 +77,27 @@ const mercedes = new Car("Mercedes", 95);
 
 bmw.accelerate();
 mercedes.brake();
+
+// SECTION: ES6 CLASSES=================================================
+// 1. NOTE: Classes are not hoisted
+// 2. NOTE: Class are first-class citizens
+// 3. NOTE: Classes are executed in strict mode
+
+// class Expression
+// const PersonCL = class {};
+
+// class Declaration
+// class PersonCl {
+//   constructor(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   }
+
+//   // Methods will be added to .prototype property automatically
+//   calcAge() {
+//     console.log(2023 - this.birthYear);
+//   }
+// }
+
+// const kuddus = new PersonCl("Kuddus", 1990);
+// kuddus.calcAge();
