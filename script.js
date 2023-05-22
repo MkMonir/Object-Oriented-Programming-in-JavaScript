@@ -59,26 +59,26 @@ Person.prototype.city = "Dhaka";
 // console.log(document.querySelector("h1"));
 
 // SECTION: CODING CHALLENGE #1 =================================================================
-const Car = function (make, speed) {
-  this.make = make;
-  this.speed = speed;
-};
+// const Car = function (make, speed) {
+//   this.make = make;
+//   this.speed = speed;
+// };
 
-Car.prototype.accelerate = function () {
-  this.speed += 10;
-  console.log(`${this.make} is going at ${this.speed} km/h`);
-};
+// Car.prototype.accelerate = function () {
+//   this.speed += 10;
+//   console.log(`${this.make} is going at ${this.speed} km/h`);
+// };
 
-Car.prototype.brake = function () {
-  this.speed -= 5;
-  console.log(`${this.make} is going at ${this.speed} km/h`);
-};
+// Car.prototype.brake = function () {
+//   this.speed -= 5;
+//   console.log(`${this.make} is going at ${this.speed} km/h`);
+// };
 
-const bmw = new Car("BMW", 120);
-const mercedes = new Car("Mercedes", 95);
+// const bmw = new Car("BMW", 120);
+// const mercedes = new Car("Mercedes", 95);
 
-bmw.accelerate();
-mercedes.brake();
+// bmw.accelerate();
+// mercedes.brake();
 
 // SECTION: ES6 CLASSES=================================================
 // 1. NOTE: Classes are not hoisted
@@ -184,3 +184,40 @@ moqbul.birthYear = 2000;
 moqbul.calcAge();
 
 console.log(moqbul.__proto__ === PersonProto);
+
+// SECTION: Challenge #2 =============================================
+
+class Car {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+  }
+
+  brake() {
+    this.speed -= 10;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+  }
+
+  get speedUs() {
+    return this.speed / 1.6;
+  }
+
+  set speedUs(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+
+const ford = new Car("Ford", 120);
+console.log(ford.speedUs);
+ford.accelerate();
+ford.accelerate();
+ford.brake();
+
+ford.speedUs = 50;
+ford.accelerate();
+ford.brake();
