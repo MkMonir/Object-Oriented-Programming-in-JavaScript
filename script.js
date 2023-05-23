@@ -289,8 +289,30 @@ EV.prototype.accelerate = function () {
 
 const tesla = new EV("Tesla", 120, 23);
 
-tesla.chargeBattery(30);
-tesla.accelerate();
-tesla.brake();
-tesla.accelerate();
-tesla.accelerate();
+// tesla.chargeBattery(30);
+// tesla.accelerate();
+// tesla.brake();
+// tesla.accelerate();
+// tesla.accelerate();
+
+// SECTION: Inheritance between classes ES6 Classes========================================
+
+class StudenCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    // NOTE: ALWAYES NEED TO be HAPPEN FIRST
+    super(fullName, birthYear);
+    this.course = course;
+  }
+
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study in ${this.course}`);
+  }
+
+  calcAge() {
+    console.log(`I am ${2023 - this.birthYear} years old`);
+  }
+}
+
+const mushi = new StudenCl("Mushfiqur Rahim", 1990, "Computer Science");
+mushi.introduce();
+mushi.calcAge();
