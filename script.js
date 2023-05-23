@@ -173,13 +173,13 @@ const personGreet = new PersonStatic("Kuddus Ali");
 PersonStatic.greet();
 
 // SECTION: Object.create ================================================
-const PersonProto = {
-  calcAge() {
-    console.log(2023 - this.birthYear);
-  },
-};
+// const PersonProto = {
+//   calcAge() {
+//     console.log(2023 - this.birthYear);
+//   },
+// };
 
-const moqbul = Object.create(PersonProto);
+// const moqbul = Object.create(PersonProto);
 // moqbul.birthYear = 2000;
 // moqbul.calcAge();
 
@@ -314,5 +314,20 @@ class StudenCl extends PersonCl {
 }
 
 const mushi = new StudenCl("Mushfiqur Rahim", 1990, "Computer Science");
-mushi.introduce();
-mushi.calcAge();
+// mushi.introduce();
+// mushi.calcAge();
+
+// SECTION: Inheritance between classes Object.create======================================
+const PersonProto = {
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  },
+};
+
+const moqbul = Object.create(PersonProto);
+
+const StudentProto = Object.create(PersonProto);
+
+const abbas = Object.create(StudentProto);
+
+console.log(abbas);
