@@ -334,29 +334,32 @@ const abbas = Object.create(StudentProto);
 
 // SECTION: ANOTHER CLASS EXAMPLE =====================================================
 class Account {
+  // 1) Public Fields (Instances) --------------------------------
+  locale = navigator.language;
+
+  // 2) Private Fields (Instances) --------------------------------
+  #movements = [];
+  #pin;
+
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
     // Protected Fields --------------------------------
-    this._pin = pin;
-    this._movements = [];
-    this.locale = navigator.language;
+    this.#pin = pin;
   }
 
+  // 3) Public Methods --------------------------------
+
   deposit(val) {
-    this._movements.push(val);
+    this.#movements.push(val);
   }
 
   withdraw(val) {
     this.deposit(-val);
   }
 
-  _approveLoan(val) {
-    return true;
-  }
-
   requestLoan(val) {
-    if (this._approveLoan(val)) {
+    if (this.#approveLoan(val)) {
       this.deposit(val);
       console.log(`Loan approved!`);
     }
@@ -364,6 +367,11 @@ class Account {
 
   getMovements() {
     return this._movements;
+  }
+
+  // Private methods--------------------------------------
+  #approveLoan(val) {
+    return true;
   }
 }
 
@@ -377,3 +385,5 @@ acc1.requestLoan(3000);
 console.log(acc1.getMovements());
 
 console.log(acc1);
+
+// console.log(acc1.#pin);
