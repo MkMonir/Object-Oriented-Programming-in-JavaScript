@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // SECTION: ==================== Constructor functions & the new Operator ========================
 // const Person = function (firstName, birthYear) {
@@ -107,7 +107,7 @@
 // SECTION: Setters & getters =================================================
 // Regular Object
 const account = {
-  owner: "Abdul Ali",
+  owner: 'Abdul Ali',
   movements: [200, 150, 350, 300],
 
   get latest() {
@@ -136,7 +136,7 @@ class PersonCl {
   }
 
   static hey() {
-    console.log("Hey there👋");
+    console.log('Hey there👋');
   }
 
   get age() {
@@ -145,7 +145,7 @@ class PersonCl {
 
   // Set a property that already exists
   set fullName(name) {
-    if (name.includes(" ")) this._fullName = name;
+    if (name.includes(' ')) this._fullName = name;
     else alert(`${name} is not a valid full name!`);
   }
 
@@ -154,7 +154,7 @@ class PersonCl {
   }
 }
 
-const kuddus = new PersonCl("Kuddus Ali", 1990);
+const kuddus = new PersonCl('Kuddus Ali', 1990);
 // console.log(kuddus.age);
 
 // SECTION: Static Methods================================================
@@ -166,10 +166,10 @@ const PersonStatic = class {
 };
 
 PersonStatic.greet = function () {
-  console.log("first");
+  console.log('first');
 };
 
-const personGreet = new PersonStatic("Kuddus Ali");
+const personGreet = new PersonStatic('Kuddus Ali');
 PersonStatic.greet();
 
 // SECTION: Object.create ================================================
@@ -245,7 +245,7 @@ Student.prototype.introduce = function () {
   console.log(`My name is ${this.firstName} and I am study at ${this.course}`);
 };
 
-const ashiq = new Student("Ashiq", 1992, "Computer Science");
+const ashiq = new Student('Ashiq', 1992, 'Computer Science');
 // ashiq.introduce();
 // ashiq.calcAge();
 
@@ -287,7 +287,7 @@ EV.prototype.accelerate = function () {
   );
 };
 
-const tesla = new EV("Tesla", 120, 23);
+const tesla = new EV('Tesla', 120, 23);
 
 // tesla.chargeBattery(30);
 // tesla.accelerate();
@@ -313,7 +313,7 @@ class StudenCl extends PersonCl {
   }
 }
 
-const mushi = new StudenCl("Mushfiqur Rahim", 1990, "Computer Science");
+const mushi = new StudenCl('Mushfiqur Rahim', 1990, 'Computer Science');
 // mushi.introduce();
 // mushi.calcAge();
 
@@ -330,4 +330,43 @@ const StudentProto = Object.create(PersonProto);
 
 const abbas = Object.create(StudentProto);
 
-console.log(abbas);
+// console.log(abbas);
+
+// SECTION: ANOTHER CLASS EXAMPLE =====================================================
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
+    this.movements = [];
+    this.locale = navigator.language;
+  }
+
+  deposit(val) {
+    this.movements.push(val);
+  }
+
+  withdraw(val) {
+    this.deposit(-val);
+  }
+
+  approveLoan(val) {
+    return true;
+  }
+
+  requestLoan(val) {
+    if (this.approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan approved!`);
+    }
+  }
+}
+
+const acc1 = new Account('Ashiq', 'BDT', 1111);
+
+acc1.deposit(1000);
+acc1.withdraw(300);
+
+acc1.requestLoan(3000);
+
+console.log(acc1);
