@@ -352,21 +352,24 @@ class Account {
 
   deposit(val) {
     this.#movements.push(val);
+    return this;
   }
 
   withdraw(val) {
     this.deposit(-val);
+    return this;
   }
 
   requestLoan(val) {
     if (this.#approveLoan(val)) {
       this.deposit(val);
       console.log(`Loan approved!`);
+      return this;
     }
   }
 
   getMovements() {
-    return this._movements;
+    return this.#movements;
   }
 
   // Private methods--------------------------------------
@@ -387,3 +390,6 @@ console.log(acc1.getMovements());
 console.log(acc1);
 
 // console.log(acc1.#pin);
+
+acc1.deposit(400).withdraw(290).requestLoan(3000).withdraw(2500);
+console.log(acc1.getMovements());
